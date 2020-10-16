@@ -1,0 +1,29 @@
+Reponse 1 :
+La classe stub est générée pour invoquer l'objet distant correspondant.
+Une instance de la classe stub joue le role de :
+-un représentant local de l'objet distant. 
+-recevoir l’appel en mode local,
+-emballer les paramètres et transformer l’appel local en appel distant en envoyant un message, 
+- attendre les résultats en provenance du serveur, 
+- déballer les paramètres résultats, et les retourner au programme client comme dans un retour de résultat local.
+Du coté client, le Stub qui implémente la même interface que l'objet distant est chargé de transformer l'appel de méthode en une suite d'octets à envoyer sur le réseau (Marshaling)
+ et de recontruire le résultat reçu sous le même format (Unmarshaling). Le format d'un appel de méthode contient l'identificateur de l'objet distant,
+ l'indentificateur de la méthode et les paramètres sérialisés. La valeur de retour contient le type (valeur ou exception) et la valeur sérialisée. 
+Reponse 2 :
+Dans mon projet, j'ai lancé le registre dans la meme machine de celle du Serveur.
+Justification : 
+rmiregister s’exécute sur la machine hébergeant des objets distants donc c'est le serveur. 
+Le registre d'objets distants est un service de nommage qui est utilisé par les serveurs RMI et qui doit etre sur le même hôte pour lier des objets distants à des noms. 
+
+
+
+Reponse 3 :
+la procédure qu'on a suivi pour créer de nouveaux patients depuis le client est : 
+l'utilisation du "Fabrique" :
+1- on a crée une méthode "createAnimal" au niveau de l'interface "ICabinet".
+2- on a implémenter cette méthode dans la classe "CabinetVeterinaire" en récupérant une instance de type "IAnimal".
+3-Le serveur va exporter un objet disant de type "ICabinet".
+4-le client va récupérer cet objet, et va pouvoir utiliser la methode "createAnimal" pour créer de nouveau animaux.
+
+Reponse 4 :
+la condition pour laquelle un objet peut etre passé en paramètre ou en valeur de retour du client vers le serveur ou réciproquement est que la classe de cet objet implémente l'interface serializable pour le rendre persistant et protéger pendant sa circulation dans le réseau car cet objet va contenir  un ensemble de données qui vont circuler sur le réseau, par exemple le serveur récupérera cet objet le dé-sérialisera et l'utilisera.
